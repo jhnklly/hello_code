@@ -1,0 +1,688 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+<meta charset="utf-8">
+
+<title>Let's make a map with vector tiles</title>
+
+<meta name="description" content="Vector tiles with Mapsense.js">
+<meta name="author" content="John Kelly">
+
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+<link rel="stylesheet" href="css/reveal.css">
+<link rel="stylesheet" href="css/theme/solarized.css" id="theme">
+
+<!-- Code syntax highlighting -->
+<link rel="stylesheet" href="lib/css/solarized_light.css">
+<!-- Table of Contents -->
+<link rel="stylesheet" href="plugin/presentable/presentable.min.css">
+
+<style>
+      body, html, #myMap {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+      }
+
+      iframe {
+        border: 0px;
+        width: 100%;
+        height: 700px;
+        /*
+        overflow: hidden;
+        overflow: scroll;
+        */
+      }
+
+    img.plain {
+        border: 0 !important;
+        box-shadow: 0 !important;
+        background: transparent !important;
+    }
+
+    img.snapshot {
+        border: 0 !important;
+        box-shadow: 0 !important;
+        background: transparent !important;
+        height: 220px;
+        margin-bottom: 2px !important;
+    }
+
+    .logo {
+        background: rgb(23,57,103);
+        padding: 0px 20px !important;
+        display: inline-block;
+    }
+
+    .left-justify {
+        text-align: left;
+    }
+
+    .right-justify {
+        /*
+        float: left;
+        display: block;
+        position: relative;
+        right: 0;
+        */
+        text-align: right;
+    }
+
+/*
+    a { border-bottom: 1px dotted #268bd2 }
+    a:hover { border-bottom: 1px dotted ##78bae6 }
+
+    #myMap {
+        height: 500px;
+    }
+*/
+
+    /* jmk overrides */
+
+    section.liveCoding {
+        height: 100%;
+    }
+
+    .reveal .maxwidth-narrow {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .reveal ul.small li {
+        font-size: 30px;
+        font-family: sans-serif;
+        letter-spacing: 0em;
+        /*
+        */
+    }
+
+    .reveal pre {
+        box-shadow: none;
+        margin: 0 auto;
+        width: 100%;
+    }
+
+    .reveal pre code {
+        display: block;
+        padding: 0px;
+        overflow: auto;
+        word-wrap: normal;
+        font-size: 30px;
+        letter-spacing: 0.0em;
+        line-height: 30px;
+        background: #f8f8f8;
+        color: #777;
+        max-height: 100%;
+        box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.3);
+    }
+
+    .reveal pre code.wrap {
+        display: block;
+        padding: 0px;
+        overflow: scroll;
+        word-wrap: normal;
+        font-size: 14px;
+        letter-spacing: 0.0em;
+        line-height: 14px;
+        background: #f8f8f8;
+        color: #777;
+        max-height: 100%;
+        box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.3);
+        white-space: pre-wrap;
+        word-wrap: break-word;
+    }
+
+    .reveal .slide-number {
+        letter-spacing: 0em;
+    }
+
+    .reveal blockquote {
+        border-left: 4px solid #ddd;
+        padding-left: 40px;
+        box-shadow: 0px 0px 2px rgba(0, 0, 0, 0);
+        margin-top: 40px;
+        margin-bottom: 40px;
+    }
+
+    #presentable-icon {
+        z-index: 999;
+        height: 20px;
+    }
+
+</style>
+
+<!-- Printing and PDF exports -->
+<script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+</script>
+
+<!--[if lt IE 9]>
+<script src="lib/js/html5shiv.js"></script>
+<![endif]-->
+</head>
+
+<body>
+<div class="reveal">
+<!-- Any section element inside of this container is displayed as a slide -->
+<div class="slides">
+<section>
+    <section>
+        <h2>Let's Make a Map</h2>
+        <p>with</p>
+        <h2>Vector Tiles</h2>
+        <p>
+            <small>
+                John Kelly for Maptime San Francisco
+                <br>
+                <br><a href="http://twitter.com/MaptimeSF" target="_blank">@MaptimeSF</a>
+                <br><a href="http://twitter.com/jhnklly" target="_blank">@jhnklly</a>
+                <br><a href="http://twitter.com/mapsense" target="_blank">@mapsense</a>
+            </small>
+        </p>
+    </section>
+    <section>
+        <h3>Table of Contents</h3>
+        <nav id="presentable-toc" class="revealjs"></nav>
+    </section>
+</section>
+
+<section>
+    <h3>Follow along</h3>
+    <p>
+        <a href="https://jhnklly.github.io/vector_tiles_tutorial" target="_blank">https://jhnklly.github.io/vector_tiles_tutorial</a>
+    </p>
+    <p>
+        <br>Questions?
+        <br>Additional tips?
+        <br>Interrupt me!
+    </p>
+    <!--
+    <p>Or get the code for examples:</p>
+    <p><a href="https://github.com/jhnklly/vector_tiles_tutorial" target="_blank">https://github.com/jhnklly/vector_tiles_tutorial</a></p>
+-->
+</section>
+
+<section>
+    <h3>What are vector tiles?</h3>
+</section>
+
+<section>
+    <h3>Vector-y!</h3>
+    <ul>
+        <li>Dynamic styling</li>
+        <li>Interaction</li>
+        <li>Animation</li>
+    </ul>
+</section>
+
+<section>
+    <p>
+        <img src="img/InteractiveVectors.gif">
+    </p>
+</section>
+
+<section>
+    <h3>Tile-y!</h3>
+    <p>
+        http://a.tile.openstreetmap.org/0/0/0.png
+        <br><img class="plain" src="http://a.tile.openstreetmap.org/0/0/0.png">
+    </p>
+</section>
+
+<section>
+    <p>
+        http://a.tile.openstreetmap.org/18/41928/101333.png
+        <br><img class="plain" src="http://a.tile.openstreetmap.org/18/41928/101333.png">
+    </p>
+    Times 70 billion.
+
+</section>
+
+<section>
+    <h3>What We'll Make</h3>
+    <iframe src="http://bl.ocks.org/erex78/raw/14e33abbd76575c96bd0/"></iframe>
+</section>
+
+
+<section>
+    <!--
+    <h3>Intentionally Blank!</h3>
+    -->
+</section>
+
+<section>
+    <!-- <h3>A bit about Mapsense</h3> -->
+    <h3><a target="_blank" href="http://www.mapsense.co"><div class="logo"><img class="plain" src="img/mapsense.png"></div></a></h3>
+
+        <img class="snapshot" src="img/Team_Standup.JPG">
+        <img class="snapshot" src="img/TeamBikeOffsite.jpg">
+        <!--
+        <img src="img/TeamAtBar.jpg">
+        -->
+
+        <br><img class="snapshot" src="img/amos.png">
+        <br><small>(Amos, head of recruiting.)</small>
+
+</section>
+
+<section>
+    <h3>Mapsense.js</h3>
+    <div class="maxwidth-narrow">
+        <ul>
+            <li>
+                <p>Open-source mapping library: <a target="_blank" href="https://github.com/mapsense/mapsense.js">https://github.com/mapsense/mapsense.js</a></p>
+            </li>
+            <li>
+                <p>Based on <a target="_blank" href="http://www.polymaps.org">polymaps.js</a> and <a target="_blank" href="http://www.d3s.org">D3.js</a></p>
+            </li>
+            <li>
+                <p>Unlimited basemap styles and possibilities.&nbsp;</p>
+                <p>
+                    <img class="plain" src="https://developer.mapsense.co/images/vintage.jpg">
+                    <img class="plain" src="https://developer.mapsense.co/images/tron.jpg">
+                    <img class="plain" src="https://developer.mapsense.co/images/sketch.jpg">
+                    <br>
+                    <img class="plain" src="https://developer.mapsense.co/images/parchment.jpg">
+                    <img class="plain" src="https://developer.mapsense.co/images/blackprint.jpg">
+                    <img class="plain" src="https://developer.mapsense.co/images/grayscale.jpg">
+
+                    <!--
+                    <img class="plain" src="https://developer.mapsense.co/images/dark.jpg">
+                    <img class="plain" src="https://developer.mapsense.co/images/light.jpg">
+                     -->
+                </p>
+            </li>
+        </ul>
+    </div>
+</section>
+
+<section>
+    <h3>Mapsense Data</h3>
+    <p>
+        <ul>
+            <li>
+                <p>Query, extract, and code with large public datasets,
+                    <br>such as OpenStreetMap and US Demographics</p>
+            </li>
+            <li>
+                <p>Publish open&nbsp;data to the world</p>
+            </li>
+        </ul>
+        <br>
+            <img class="plain" src="img/mapsense_data.png">
+    </p>
+</section>
+
+
+<section>
+    <!--
+    <h3>Intentionally Blank!</h3>
+    -->
+</section>
+
+
+<section>
+    <h3>Back to Vectiles</h3>
+
+    <p>
+        <blockquote cite="https://en.wikipedia.org/wiki/Vector_tiles">
+            <div class="left-justify">&ldquo;&hellip; geographic data packaged into pre-defined roughly-square shaped "tiles".&rdquo;</div>
+            <div class="right-justify">&mdash;<a href="https://en.wikipedia.org/wiki/Vector_tiles" target="_blank">Wikipedia</a></div>
+        </blockquote>
+
+    </p>
+    <p>
+        <ul>
+            <li><a target="_blank" href="http://mike.teczno.com/img/Geomeetup-slides-2013-04.pdf" target="_blank">Michal Migurski, SF Geomeetup 2013</a></li>
+            <li><a target="_blank" href="http://wiki.openstreetmap.org/wiki/Vector_tiles" target="_blank">http://wiki.openstreetmap.org/wiki/Vector_tiles</a></li>
+            <li><a target="_blank" href="https://github.com/mapbox/vector-tile-spec" target="_blank">https://github.com/mapbox/vector-tile-spec</a></li>
+        </ul>
+    </p>
+
+</section>
+
+<section>
+    <h3>Vectile Geek Stuff</h3>
+    <ul>
+        <li>topology?</li>
+        <li>quantization: like "snap-to-grid" or "coordinate precision"</li>
+        <li>delta-encoded: relative coordinates</li>
+        <li>protobuf’d</li>
+        <li>zip’d</li>
+        <li>sqlite with primary-key as tile</li>
+    </ul>
+
+</section>
+
+<section>
+    <h3>Paws 4 Questions</h3>
+    <img src="img/cat-gif-snow-wall.gif">
+</section>
+
+<section>
+    <h3>Under the Hood</h3>
+    <pre><code class="wrap">
+{"type":"Topology","q":[4096,4096],"transform":{"scale":[2.6822090148960476E-6,2.119827344163744E-6],"translate":[-122.43164062500001,37.779398571318765]},"srid":"4326","objects":{"land":{"type":"GeometryCollection","geometries":[{"id":0,"properties":{"minz":0},"type":"MultiPolygon","arcs":[[[1432]]]}]},"landuse":{"type":"GeometryCollection","geometries":[{"id":4705353,"properties":{"minz":13,"sub_layer":"park","leisure":"park","name":"Jefferson Square"},"type":"Polygon","arcs":[[0]]},{"id":6721233,"properties":{"minz":13,"sub_layer":"park","leisure":"pitch"},"type":"Polygon","arcs":[[1]]},{"id":7380715,"properties":{"building":"yes","minz":15,"sub_layer":"building"},"type":"Polygon","arcs":[[2]]},{"id":7846397,"properties":{"name":"Cathedral of Saint Mary of the Assumption","building":"yes","minz":15,"sub_layer":"building","amenity":"place_of_worship"},"type":"Polygon","arcs":[[3,4,5,6,7]]},{"id":7915992,"properties":{"name":"Margaret S. Hayward Playground","minz":13,"sub_layer":"park","leisure":"park"},"type":"Polygon","arcs":[[8]]},{"id":8594947,"properties":{"building":"yes","minz":15,"sub_layer":"building","name":"State of California Building"},"type":"Polygon","arcs":[[9,1433,10,11,12],[13]]},{"id":8649879,"properties":{"building":"yes","minz":15,"sub_layer":"building"},"type":"Polygon","arcs":[[14],[15]]},{"id":8700533,"properties":{"name":"Kintetsu Mall","building":"yes","minz":15,"sub_layer":"building"},"type":"Polygon","arcs":[[16,17,18]]},{"id":9037911,"properties":{"name":"War Memorial Veterans Building","building":"yes","minz":15,"sub_layer":"building","amenity":"theatre"},"type":"Polygon","arcs":[[19,1434,20]]},{"id":9054515,"properties":{"name":"Cathedral Hill Plaza","building":"yes","minz":15,"sub_layer":"building"},"type":"Polygon","arcs":[[21]]},{"id":9098966,"properties":{"name":"Safeway 0995","minz":15,"sub_layer":"building","building":"retail"},"type":"Polygon","arcs":[[22,1435]]},{"id":9167882,"properties":{"minz":15,"sub_layer":"building","building":"apartments"},"type":"Polygon","arcs":[[23,1436]]},{"id":9371343,"properties":{"building":"yes","minz":15,"sub_layer":"building"},"type":"Polygon","arcs":[[24,1437,25]]},{"id":9820605,"properties":{"building":"yes","minz":15,"sub_layer":"building"},"type":"Polygon","arcs":[[26]]},{"id":10005073,"properties":{"building":"yes","minz":15,"sub_layer":"building"},"type":"Polygon","arcs":[[27,-7,28],[29],[30]]},{"id":10054102,"properties":{"building":"yes","minz":15,"sub_layer":"building"},"type":"Polygon","arcs":[[31]]},{"id":10068970,"properties":{"building":"yes","minz":15,"sub_layer":"building"},"type":"Polygon","arcs":[[32,33,34,35,36,37]]},{"id":10069784,"properties":{"name":"Miyako Mall","building":"yes","minz":15,"sub_layer":"building"},"type":"Polygon","arcs":[[38,39,40,41,42]]},{"id":10135953,"properties":{"name":"Kinokuniya Mall","building":"yes","minz":15,"sub_layer":"building"},"type":"Polygon","arcs":[[43,44,45,1438]]},{"id":10441598,"properties":{"name":"KRON
+    </code></pre>
+</section>
+
+<section>
+    <h3>Consume Vectiles</h3>
+<ul>
+<li><a href="https://github.com/mapsense/mapsense.js">mapsense.js</a></li>
+<li><a href="https://github.com/SpatialServer/Leaflet.MapboxVectorTile">Leaflet.MapboxVectorTile</a></li>
+<li><a href="https://github.com/mapbox/mapbox-gl-js">Mapbox GL JS</a></li>
+<li>&hellip;</li>
+</ul>
+</section>
+
+<section>
+    <h3>Produce Vectiles</h3>
+<ul>
+<li><a href="http://www.mapsense.co/plans/">Mapsense Analyst</a></li>
+<li><a href="https://github.com/mapbox/vector-tile-js">vector-tile-js</a></li>
+<li><a href="https://github.com/mapbox/mapnik-vector-tile">mapnik-vector-tile</a></li>
+<li><a href="https://github.com/trailbehind/WhirlyGlobe/blob/feature/mapnik-vector-tiles/WhirlyGlobeSrc/WhirlyGlobe-MaplyComponent/src/MaplyMapnikVectorTiles.mm">WhirlyGlobe/Maply</a></li>
+<li><a href="https://github.com/mapzen/mapbox-vector-tile">mapbox-vector-tile</a></li>
+<li><a href="https://github.com/mapbox/tippecanoe">tippecanoe</a></li>
+<li><a href="https://github.com/mapbox/geojson-vt">geojson-vt</a></li>
+
+<li>&hellip;</li>
+
+<!--
+<li><a href="http://www.mapsense.co/plans/">Mapsense Analyst</a></li>
+<li><a href="https://github.com/mapbox/vector-tile-js">vector-tile-js</a> - Parses vector tiles with JavaScript.</li>
+<li><a href="https://github.com/mapbox/mapnik-vector-tile">mapnik-vector-tile</a> - C++ vector tile read/write implementation on top of Mapnik.</li>
+<li><a href="https://github.com/trailbehind/WhirlyGlobe/blob/feature/mapnik-vector-tiles/WhirlyGlobeSrc/WhirlyGlobe-MaplyComponent/src/MaplyMapnikVectorTiles.mm">WhirlyGlobe/Maply</a> - Objective C code that is able to read and render vector tiles(and style with mapnik xml) on iOS devices.</li>
+<li><a href="https://github.com/mapzen/mapbox-vector-tile">mapbox-vector-tile</a> is a Python package for vector tile encoding maintained by Mapzen. (It is used in Mapzen's <a href="http://mapzen.com/vector">vector tile service</a>).</li>
+<li><a href="https://github.com/mapbox/tippecanoe">tippecanoe</a> - Build vector tilesets from large collections of GeoJSON features.</li>
+<li><a href="https://github.com/mapbox/geojson-vt">geojson-vt</a> - Slice GeoJSON into vector tiles on the fly in the browser.</li>
+
+ -->
+<!--
+<li><a href="https://github.com/mapnik/node-mapnik">node-mapnik</a> - Node.js API for vector tiles which depends on <code>mapnik-vector-tile</code>
+</li>
+<li><a href="https://github.com/mapbox/tilelive-bridge">tilelive-bridge</a> - Implements <a href="https://github.com/mapbox/tilelive.js/blob/master/API.md">Tilelive API</a> for creating vector tiles from traditional Mapnik datasources in Node.js.</li>
+<li><a href="https://github.com/mapbox/tilelive-vector">tilelive-vector</a> - Implements <a href="https://github.com/mapbox/tilelive.js/blob/master/API.md">Tilelive API</a> for reading vector tiles and rendering to image tiles in Node.js.</li>
+<li><a href="https://github.com/ElectronicChartCentre/java-vector-tile">java-vector-tile</a> - A java encoder and decoder for vector tiles.</li>
+<li><a href="https://github.com/mapbox/mapbox-gl-native">Mapbox GL Native</a> - C++/OpenGL vector maps library.</li>
+<li><a href="https://developer.nutiteq.com">Nutiteq Maps SDK 3.x</a> - Mobile maps library for iOS, Android, Windows Phone and Xamarin</li>
+-->
+
+</ul>
+</section>
+<!--
+https://github.com/mapbox/vector-tile-spec/wiki/Implementations
+ -->
+
+<section>
+    <!--
+    <h3>Intentionally Blank!</h3>
+    -->
+</section>
+
+<section>
+    <h3>Developer Resources</h3>
+    <p>
+        <a target="_blank" href="https://developer.mapsense.co/" target="_blank">https://developer.mapsense.co/</a>
+        <ul>
+            <li><a target="_blank" href="https://developer.mapsense.co/tileViewer/" target="_blank">Data</a></li>
+            <li><a target="_blank" href="https://developer.mapsense.co/documentation/" target="_blank">Documentation</a></li>
+            <li><a target="_blank" href="https://developer.mapsense.co/examples/" target="_blank">Examples</a></li>
+        </ul>
+    </p>
+</section>
+
+<section>
+    <h3>Steal this code.</h3>
+    <iframe src="https://developer.mapsense.co/examples/"></iframe>
+</section>
+
+
+<section>
+    <!--
+    <h3>Intentionally Blank!</h3>
+    -->
+</section>
+
+
+<section>
+    <h3>First Map: Hello World</h3>
+</section>
+
+<section>
+    <h3>1. HTML boilerplate + libraries</h3>
+
+    <pre><code>&lt;!doctype html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+        <script src="http://d3js.org/topojson.v1.min.js" charset="utf-8"></script>
+        <script src="https://developer.mapsense.co/mapsense.js" charset="utf-8"></script>
+
+        <link  type="text/css"  href="https://developer.mapsense.co/mapsense.css" rel="stylesheet"/>
+    &lt;/head&gt;
+    &lt;body&gt;
+        <script>
+            // our code will go here
+        </script>
+    &lt;/body&gt;
+&lt;/html&gt;
+    </code></pre>
+</section>
+
+
+<section>
+    <h3>2. Add a Mapsense basemap</h3>
+    <pre><code contenteditable spellcheck="false">
+d3.select("body").append("div")
+    .attr("id","myMap")
+    .attr("style","height: 100%;");
+
+var myKey = "";
+
+var map = mapsense.map("#myMap")
+    .add(mapsense.basemap().apiKey(myKey));
+    </code></pre>
+
+    <p class="fragment">
+        Let's get keys: <a target="_blank" href="https://developer.mapsense.co/account/#signUp">developer.mapsense.co</a>!
+    </p>
+</section>
+
+<section>
+    <h3>3. No Step 3</h3>
+    <iframe src="http://bl.ocks.org/jhnklly/raw/3270644093d8fbebfcd6/#10.5/37.7745/-122.3401"></iframe>
+</section>
+
+<section>
+    <h3>End Slidetime</h3>
+    <h3>Begin Maptime!</h3>
+
+    <div class="fragment">
+        <a target="_blank" href="http://www.mapsense.co/hurricanes">http://www.mapsense.co/hurricanes</a>
+    </div>
+
+    <div class="fragment">
+        <a target="_blank" href="http://www.mapsense.co/hurricanes">http://bl.ocks.org/erex78/14e33abbd76575c96bd0/</a>
+    </div>
+
+</section>
+
+<!--
+<section>
+    <h3>Let's open our text editors &
+ code together: <a target="_blank" href="http://www.mapsense.co/hurricanes">http://www.mapsense.co/hurricanes</a></h3>
+</section>
+ -->
+<!--
+<section>
+    <h3>Diving Deeper</h3>
+    <p><a target="_blank" href="https://developer.mapsense.co/examples/">developer.mapsense.co/examples/</a></p>
+</section>
+
+<section>
+    <h3><a target="_blank" href="http://styler.mapsense.co/">styler.mapsense.co</a></h3>
+    <p>Great for designers</p>
+    <p><small>(And kids & grandparents too!)</small></p>
+    <iframe src="http://styler.mapsense.co/"></iframe>
+</section>
+<section>
+    <h3><a target="_blank" href="http://bl.ocks.org/mapsense-examples/e50c245eea328baca1c9">Put your own geojson on the map</a></h3>
+    <iframe src="http://bl.ocks.org/mapsense-examples/e50c245eea328baca1c9"></iframe>
+</section>
+
+<section>
+    <h3><a target="_blank" href="http://bl.ocks.org/mapsense-examples/raw/00ee03b071e938ce6cc0">Color by Data (Choropleth)</a></h3>
+    <iframe src="http://bl.ocks.org/mapsense-examples/raw/00ee03b071e938ce6cc0"></iframe>
+</section>
+
+<section>
+    <h3>Choropleth cartography standards, tip 1</h3>
+    <p>
+        <a target="_blank" href="http://uxblog.idvsolutions.com/2011/10/telling-truth.html">Telling the Truth</a>
+        <br>
+        <a target="_blank" href="http://uxblog.idvsolutions.com/2011/10/telling-truth.html/"><img src="img/MultipleClassificationsSkewed.jpg"></a>
+    </p>
+</section>
+
+<section>
+    <h3>Choropleth cartography standards, tip 2</h3>
+    <p>
+        <a target="_blank" href="http://colorbrewer2.org/">colorbrewer</a>
+        <iframe src="http://colorbrewer2.org/"></iframe>
+        <br>
+    </p>
+</section>
+
+
+<section>
+    <h3><a target="_blank" href="http://bl.ocks.org/mapsense-examples/a6b44908788263ef9165">Interact with Legend &rsaquo; Interact with Map</a></h3>
+    <iframe src="http://bl.ocks.org/mapsense-examples/raw/a6b44908788263ef9165"></iframe>
+</section>
+
+<section>
+    <h3><a target="_blank" href="http://bl.ocks.org/mapsense-examples/bbeb63d06c8ed9f0ee77">Raster Too</a></h3>
+    <iframe src="http://bl.ocks.org/mapsense-examples/raw/bbeb63d06c8ed9f0ee77"></iframe>
+</section>
+
+<section>
+    <h3><a target="_blank" href="http://bl.ocks.org/mapsense-examples/8ad03c1400b93251f5e2">Raster Two (+ Geocode)</a></h3>
+    <iframe src="http://bl.ocks.org/mapsense-examples/raw/8ad03c1400b93251f5e2"></iframe>
+</section>
+
+<section>
+    <h3><a target="_blank" href="http://bl.ocks.org/mapsense-examples/7cde026bc1ef67280fec">Drag'n'Drop</a></h3>
+    <iframe src="http://bl.ocks.org/mapsense-examples/raw/7cde026bc1ef67280fec"></iframe>
+</section>
+
+<section>
+    <h3><a target="_blank" href="http://bl.ocks.org/mapsense-examples/">Drag'n'Join</a></h3>
+    <iframe src="http://bl.ocks.org/mapsense-examples/raw/"></iframe>
+</section>
+
+
+
+<section>
+    <h3><a target="_blank" href="http://bl.ocks.org/mapsense-examples/4bb87fe335cfba4e10c2">Fast Filter OSM</a></h3>
+    <iframe src="http://bl.ocks.org/mapsense-examples/raw/4bb87fe335cfba4e10c2"></iframe>
+</section>
+
+<section>
+    <h3><a target="_blank" href="http://bl.ocks.org/mapsense-examples/343ae128d93c317ad31c">Use the D3.</a></h3>
+    <iframe src="http://bl.ocks.org/mapsense-examples/raw/343ae128d93c317ad31c"></iframe>
+</section>
+
+<section>
+    <h3><a target="_blank" href="http://bl.ocks.org/mapsense-examples/be0ad69cbea40d842726">Leaflet tilelayer &amp; mapsense vector tiles</a></h3>
+    <iframe src="http://bl.ocks.org/mapsense-examples/raw/be0ad69cbea40d842726"></iframe>
+</section>
+
+<section>
+    <h3><a target="_blank" href="http://bl.ocks.org/mapsense-examples/f1099c642a7a1ed9e71e">Toggle Layers</a></h3>
+    <iframe src="http://bl.ocks.org/mapsense-examples/raw/f1099c642a7a1ed9e71e"></iframe>
+</section>
+
+
+<section>
+    <h3></h3>
+</section>
+
+<section>
+    <h3></h3>
+</section>
+
+-->
+
+
+<!--
+<section>
+    <h3>Here is the Gratuitous &amp; Requisite Cat GIF</h3>
+    <img src="img/best_cat_gif_jump_light.gif">
+</section>
+ -->
+</div>
+</div>
+
+<aside id="presentable-icon" class="reveal">
+    <a title="Table of Contents" href="#/0/1">
+        <smaller>&nbsp;</smaller>
+    </a>
+</aside>
+
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.js"></script>
+<!--
+<script src="plugin/presentable/presentable.min.js"></script>
+-->
+
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<script src="http://d3js.org/topojson.v1.min.js" charset="utf-8"></script>
+<script src="https://developer.mapsense.co/mapsense.js" charset="utf-8"></script>
+<link  type="text/css"  href="https://developer.mapsense.co/mapsense.css" rel="stylesheet"/>
+
+<script>
+
+// Full list of configuration options available at:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+controls: true,
+slideNumber: true,
+progress: true,
+history: true,
+center: true,
+//width: 960,
+//height: 700,
+width: '100%',
+height: '100%',
+margin: 0.01,
+
+transition: 'fade', // none/fade/slide/convex/concave/zoom
+
+// Optional reveal.js plugins
+dependencies: [
+    { src: 'plugin/livecode/livecode.js', async: true },
+    { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+    { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+    { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+    { src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+    { src: 'plugin/zoom-js/zoom.js', async: true },
+    { src: 'plugin/notes/notes.js', async: true },
+    { src: 'plugin/presentable/presentable.min.js', callback: function() { presentable.toc({framework: "revealjs"}); } }
+]
+});
+
+
+</script>
+
+</body>
+</html>
