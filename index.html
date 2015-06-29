@@ -1,0 +1,656 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+<meta charset="utf-8">
+
+<title>Hello Code!</title>
+
+<meta name="description" content="Vector tiles with Mapsense.js">
+<meta name="author" content="John Kelly">
+
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+<link rel="stylesheet" href="css/reveal.css">
+<link rel="stylesheet" href="css/theme/solarj.css" id="theme">
+
+<!-- Code syntax highlighting -->
+<link rel="stylesheet" href="lib/css/solarized_light.css">
+<!-- Table of Contents -->
+<link rel="stylesheet" href="plugin/presentable/presentable.min.css">
+
+<style>
+      body, html, #myMap {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+      }
+
+      iframe {
+        border: 0px;
+        width: 100%;
+        height: 700px;
+        /*
+        overflow: hidden;
+        overflow: scroll;
+        */
+      }
+
+    img.plain {
+        border: 0 !important;
+        box-shadow: 0 !important;
+        background: transparent !important;
+    }
+
+    img.snapshot {
+        border: 0 !important;
+        box-shadow: 0 !important;
+        background: transparent !important;
+        height: 220px;
+        margin-bottom: 2px !important;
+    }
+
+    .logo {
+        background: rgb(23,57,103);
+        padding: 0px 20px !important;
+        display: inline-block;
+    }
+
+    .left-justify {
+        text-align: left;
+    }
+
+    .right-justify {
+        /*
+        float: left;
+        display: block;
+        position: relative;
+        right: 0;
+        */
+        text-align: right;
+    }
+
+    .hili {
+        background-color: #FFFF00;
+        display: inline;
+    }
+/*
+    a { border-bottom: 1px dotted #268bd2 }
+    a:hover { border-bottom: 1px dotted ##78bae6 }
+
+    #myMap {
+        height: 500px;
+    }
+*/
+
+    /* jmk overrides */
+
+    section.liveCoding {
+        height: 100%;
+    }
+
+    .reveal .maxwidth-narrow {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .reveal ul.small li {
+        font-size: 30px;
+        font-family: sans-serif;
+        letter-spacing: 0em;
+        /*
+        */
+    }
+
+    .reveal pre {
+        box-shadow: none;
+        margin: 0 auto;
+        width: 100%;
+    }
+
+    span.new {
+        background-color: yellow;
+    }
+    .reveal pre code.bigcode {
+        font-size: 2em;
+        line-height: 1em;
+    }
+
+    .reveal pre code {
+        display: block;
+        padding: 0px;
+        overflow: auto;
+        word-wrap: normal;
+        font-size: 30px;
+        letter-spacing: 0.0em;
+        line-height: 30px;
+        background: #f8f8f8;
+        color: #777;
+        max-height: 100%;
+        box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.3);
+    }
+
+    .reveal pre code.wrap {
+        display: block;
+        padding: 0px;
+        overflow: scroll;
+        word-wrap: normal;
+        font-size: 14px;
+        letter-spacing: 0.0em;
+        line-height: 14px;
+        background: #f8f8f8;
+        color: #777;
+        max-height: 100%;
+        box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.3);
+        white-space: pre-wrap;
+        word-wrap: break-word;
+    }
+
+    .reveal .slide-number {
+        letter-spacing: 0em;
+    }
+
+    .reveal blockquote {
+        border-left: 4px solid #ddd;
+        padding-left: 40px;
+        box-shadow: 0px 0px 2px rgba(0, 0, 0, 0);
+        margin-top: 40px;
+        margin-bottom: 40px;
+    }
+
+    #presentable-icon {
+        z-index: 999;
+        height: 20px;
+    }
+
+</style>
+
+<!-- Printing and PDF exports -->
+<script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+</script>
+
+<!--[if lt IE 9]>
+<script src="lib/js/html5shiv.js"></script>
+<![endif]-->
+</head>
+
+<body>
+<div class="reveal">
+<!-- Any section element inside of this container is displayed as a slide -->
+<div class="slides">
+<section>
+    <section>
+        <h2>Hello Code!</h2>
+        <p></p>
+        <h2></h2>
+        <p>
+            <small>
+
+                <br>
+                <br><a href="http://twitter.com/MaptimeSF" target="_blank">@MaptimeSF</a>
+                <br><a href="http://twitter.com/jhnklly" target="_blank">@jhnklly</a>
+                <br><a href="http://twitter.com/mapsense" target="_blank">@mapsense</a>
+            </small>
+        </p>
+    </section>
+    <section>
+        <h3>Table of Contents</h3>
+        <nav id="presentable-toc" class="revealjs"></nav>
+    </section>
+</section>
+
+<section>
+    <h3>Follow along</h3>
+    <p>
+        <a href="https://jhnklly.github.io/vector_tiles_tutorial" target="_blank">https://jhnklly.github.io/vector_tiles_tutorial</a>
+    </p>
+    <p>
+        <div class="fragment">All questions are important.</div>
+        <div class="fragment">It's okay to cheat off others.</div>
+        <div class="fragment">(Actually, kinda required.)</div>
+        <div class="fragment">(I.e., be friendly and help each other.)</div>
+    </p>
+    <!--
+    <p>Or get the code for examples:</p>
+    <p><a href="https://github.com/jhnklly/vector_tiles_tutorial" target="_blank">https://github.com/jhnklly/vector_tiles_tutorial</a></p>
+-->
+</section>
+
+
+
+<section>
+    <h3>Meettime!</h3>
+    <div class="fragment">Name, geolocation, code experience?</div>
+    <div class="fragment">And today's poll: What is your favorite animated gif?</div>
+    <ol class="fragment">
+        <li class="fragment">Duckling Following A Cat Dressed As A Shark Riding A Roomba</li>
+        <li class="fragment">Squirrel Burying Walnut In Dog's Fur</li>
+        <li class="fragment">Basketball</li>
+        <li class="fragment">Cats</li>
+        <li class="fragment">Other</li>
+        <li class="fragment">Stop pandering to us, this gif thing is totally played out.</li>
+    </ol>
+
+</section>
+
+
+
+<section>
+    <h3>Text Editor</h3>
+</section>
+
+<section>
+    <h3><a href="http://maptime.io/" target="_blank">http://maptime.io/</a></h3>
+</section>
+
+
+<section>
+    <h3>Resources</h3>
+    <ul>
+        <li>Right-click &rsaquo; Inspect Element (Cmd + Opt + I)</li>
+        <li>View &rsaquo; Developer &rsaquo; View Source (Cmd + Opt + U)</li>
+        <li>jsbin, jsfiddle.net, Mozilla Thimble</li>
+        <li>https://www.cs.tut.fi/~jkorpela/www/testel.html</li>
+</section>
+
+
+<section>
+    <h3>HTML & CSS & Javascript</h3>
+
+    <ul>
+        <li class="fragment">HyperText Markup Language</li>
+        <li class="fragment">Cascading Style Sheets</li>
+        <li class="fragment">Not Java; just script</li>
+    </ul>
+
+</section>
+
+
+
+
+<section>
+    <h2>index.txt</h2>
+    <pre><code class="bigcode"  contenteditable spellcheck="false">
+Hello, World!
+    </code></pre>
+</section>
+
+<section>
+    <h2>index.html</h2>
+    <pre><code class="bigcode"  contenteditable spellcheck="false">
+Hello, World!
+    </code></pre>
+</section>
+
+<section>
+    <h2>"Tags" = Markup = &lt;angle brackets&gt;</h2>
+    <pre><code class="bigcode"  contenteditable spellcheck="false">
+
+<div class="hili">&lt;h1&gt;</div>Hello, World!<div class="hili">&lt;/h1&gt;</div>
+
+    </code></pre>
+</section>
+
+
+<section>
+    <h2>Style?</h2>
+    <pre><code class="bigcode" contenteditable spellcheck="false">
+
+<div class="hili">h1 { color: green; }</div>
+
+&lt;h1&gt;Hello, World!&lt;/h1&gt;
+
+    </code></pre>
+
+    <h3 class="fragment">CSS gets {curly brackets}, colons: and semi-colons;</h3>
+
+</section>
+
+
+<section>
+    <h2>Style!</h2>
+    <pre><code class="bigcode"  contenteditable spellcheck="false">
+<div class="hili">&lt;style&gt;</div>
+    h1 { color: green; }
+<div class="hili">&lt;/style&gt;</div>
+
+&lt;h1&gt;Hello, World!&lt;/h1&gt;
+
+    </code></pre>
+
+    <h3 class="fragment">CSS also needs to be inside &lt;style&gt; tags.</h3>
+
+</section>
+
+
+<section>
+    <h3>Proper form</h3>
+    <pre><code class="bigcode"  contenteditable spellcheck="false">
+<div class="hili">&lt;html&gt;
+    &lt;head&gt;</div>
+        &lt;style&gt;
+            h1 { color: green; }
+        &lt;/style&gt;
+<div class="hili">    &lt;/head&gt;
+
+    &lt;body&gt;</div>
+        &lt;h1&gt;Hello, World!&lt;/h1&gt;
+
+<div class="hili">    &lt;/body&gt;
+&lt;/html&gt;
+</div>
+    </code></pre>
+</section>
+
+<section>
+    <h3>Let's try lots of style</h3>
+    <pre><code class="bigcode"  contenteditable spellcheck="false">
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;style&gt;
+            body {
+                color: yellow;
+            }
+            h1 { color: green; }
+            p { color: purple; }
+        &lt;/style&gt;
+    &lt;/head&gt;
+
+    &lt;body&gt;
+        &lt;h1&gt;Hello, World!&lt;/h1&gt;
+
+        &lt;p&gt;Feline ipsum dolor ocelot, tabby
+        so bobtail.
+        Norwegian forest such lynx.&lt;/p&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+
+    </code></pre>
+</section>
+
+<section>
+    <pre><code class="bigcode"  contenteditable spellcheck="false">
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;style&gt;
+            body {
+                font-family: sans-serif;
+                background-color: yellow;
+            }
+            h1 { color: green; }
+            p { color: purple; }
+        &lt;/style&gt;
+    &lt;/head&gt;
+
+    &lt;body&gt;
+        &lt;h1&gt;Hello, World!&lt;/h1&gt;
+
+        &lt;p&gt;Feline ipsum dolor sit amet ocelot, tabby so bobtail.
+        Norwegian forest bombay such lynx. &lt;/p&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+
+    </code></pre>
+</section>
+
+<section>
+    <pre><code class="bigcode"  contenteditable spellcheck="false">
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;style&gt;
+            body {
+                font-family: sans-serif;
+                background-color: yellow;
+            }
+            h1 { color: green; }
+            p { color: purple; }
+        &lt;/style&gt;
+    &lt;/head&gt;
+
+    &lt;body&gt;
+        &lt;h1&gt;Hello, World!&lt;/h1&gt;
+
+        &lt;p&gt;Feline ipsum dolor sit amet ocelot, tabby so bobtail.
+        Norwegian forest bombay such lynx. &lt;/p&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+
+    </code></pre>
+</section>
+
+<section>
+    <pre><code class="bigcode"  contenteditable spellcheck="false">
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;style&gt;
+            body {
+                font-family: sans-serif;
+                background-color: yellow;
+            }
+            h1 { color: green; }
+            p { color: purple; }
+        &lt;/style&gt;
+    &lt;/head&gt;
+
+    &lt;body&gt;
+        &lt;h1&gt;Hello, World!&lt;/h1&gt;
+
+        &lt;p&gt;Feline ipsum dolor sit amet ocelot, tabby so bobtail.
+        Norwegian forest bombay such lynx. &lt;/p&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+
+    </code></pre>
+</section>
+
+
+<section>
+    <h3>Paws 4 Questions</h3>
+    <img src="img/cat-gif-snow-wall.gif">
+</section>
+
+<!--
+JAVASCRIPT
+-->
+
+<section>
+    <h3>HTML & CSS just for style</h3>
+    <h3>Javascript for behavior</h3>
+    <pre><code class="bigcode" contenteditable spellcheck="false">
+&lt;script&gt;
+    alert("I'm an alert!");
+&lt;/script&gt;
+    </code></pre>
+
+</section>
+
+
+<section>
+    <h3></h3>
+    <pre><code class="bigcode" contenteditable spellcheck="false">
+&lt;script&gt;
+    var foo = "Meow.";
+
+    alert("I'm an alert!" + foo);
+&lt;/script&gt;
+    </code></pre>
+
+</section>
+
+
+
+<section>
+    <h3></h3>
+    <pre><code class="bigcode" contenteditable spellcheck="false">
+&lt;script&gt;
+    var text_var = "Meow.";
+    var number_var = 0;
+
+    alert(number_var + text_var);
+&lt;/script&gt;
+    </code></pre>
+
+</section>
+
+
+
+<section>
+    <h3>if (this condition is true) { do this; }</h3>
+    <pre><code class="bigcode" contenteditable spellcheck="false">
+&lt;script&gt;
+    var text_var = "Meow.";
+    var number_var = 0;
+
+    if (number_var > 0) {
+        alert(number_var + text_var);
+    }
+&lt;/script&gt;
+    </code></pre>
+
+</section>
+
+
+<section>
+    <h3>Details matter</h3>
+    <pre><code class="bigcode"  contenteditable spellcheck="false">
+&lt;script&gt;
+    var text_var = "Meow.";
+    var number_var = 0;
+
+    if (number_var >= 0) {
+        alert(number_var + text_var);
+    }
+&lt;/script&gt;
+    </code></pre>
+
+</section>
+
+<section>
+    <h3></h3>
+    <pre><code class="bigcode" contenteditable spellcheck="false">
+&lt;script&gt;
+    var text_var = "Meow.";
+    var number_var = 0;
+
+    while (number_var < 7) {
+        if (number_var >= 0) {
+            alert(number_var + text_var);
+        }
+        number_var++;
+    }
+&lt;/script&gt;
+    </code></pre>
+
+</section>
+
+
+<section>
+    <h3></h3>
+    <pre><code class="bigcode" contenteditable spellcheck="false">
+&lt;script&gt;
+    var text_var = "Meow.";
+    var number_var = 0;
+
+    while (number_var < 7) {
+        if (number_var >= 0) {
+            alert(number_var + text_var);
+        }
+        number_var++;
+    }
+&lt;/script&gt;
+    </code></pre>
+
+</section>
+
+
+
+<section>
+    <h3></h3>
+    <pre><code class="bigcode" contenteditable spellcheck="false">
+&lt;script&gt;
+    var text_var = "Meow.";
+    var number_var = 0;
+
+    while (number_var < 7) {
+        if (number_var >= 0) {
+            alert(number_var + text_var);
+        }
+        number_var++;
+    }
+&lt;/script&gt;
+    </code></pre>
+
+</section>
+
+
+
+<!--
+<section>
+    <h3>Here is the Gratuitous &amp; Requisite Cat GIF</h3>
+    <img src="img/best_cat_gif_jump_light.gif">
+</section>
+ -->
+</div>
+</div>
+
+<aside id="presentable-icon" class="reveal">
+    <a title="Table of Contents" href="#/0/1">
+        <smaller>&nbsp;</smaller>
+    </a>
+</aside>
+
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.js"></script>
+<!--
+<script src="plugin/presentable/presentable.min.js"></script>
+
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<script src="http://d3js.org/topojson.v1.min.js" charset="utf-8"></script>
+<script src="https://developer.mapsense.co/mapsense.js" charset="utf-8"></script>
+<link  type="text/css"  href="https://developer.mapsense.co/mapsense.css" rel="stylesheet"/>
+-->
+
+<script>
+
+// Full list of configuration options available at:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+controls: true,
+slideNumber: true,
+progress: true,
+history: true,
+center: true,
+//width: 960,
+//height: 700,
+width: '100%',
+height: '100%',
+margin: 0.01,
+
+transition: 'none', // none/fade/slide/convex/concave/zoom
+
+// Optional reveal.js plugins
+dependencies: [
+    { src: 'plugin/livecode/livecode.js', async: true },
+    { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+    { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+    { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+    { src: 'plugin/highlight/highlight.max.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+    { src: 'plugin/zoom-js/zoom.js', async: true },
+    { src: 'plugin/notes/notes.js', async: true },
+    { src: 'plugin/presentable/presentable.min.js', callback: function() { presentable.toc({framework: "revealjs"}); } }
+]
+});
+
+
+</script>
+
+</body>
+</html>
