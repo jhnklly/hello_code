@@ -74,7 +74,7 @@
     }
 
     .hili {
-        background-color: #FFFF00;
+        background-color: rgba(255,255,0,0.5);
         display: inline;
     }
 /*
@@ -116,7 +116,7 @@
     }
     .reveal pre code.bigcode {
         font-size: 2em;
-        line-height: 1em;
+        line-height: 1.1em;
     }
 
     .reveal pre code {
@@ -227,8 +227,9 @@
 
 
 <section>
-    <h3>Meettime!</h3>
+    <h2>Meettime!</h2>
     <div class="fragment">Name, geolocation, code experience?</div>
+    <!--
     <div class="fragment">And today's poll: What is your favorite animated gif?</div>
     <ol class="fragment">
         <li class="fragment">Duckling Following A Cat Dressed As A Shark Riding A Roomba</li>
@@ -238,31 +239,24 @@
         <li class="fragment">Other</li>
         <li class="fragment">Stop pandering to us, this gif thing is totally played out.</li>
     </ol>
-
+    -->
 </section>
 
 
 
 <section>
-    <h3>Text Editor</h3>
-</section>
-
-<section>
-    <h3><a href="http://maptime.io/" target="_blank">http://maptime.io/</a></h3>
-</section>
-
-
-<section>
-    <h3>Resources</h3>
+    <h2>Downloadtime!</h2>
+    <h3>Get A Text Editor</h3>
     <ul>
-        <li>Right-click &rsaquo; Inspect Element (Cmd + Opt + I)</li>
-        <li>View &rsaquo; Developer &rsaquo; View Source (Cmd + Opt + U)</li>
-        <li>jsbin, jsfiddle.net, Mozilla Thimble</li>
-        <li>https://www.cs.tut.fi/~jkorpela/www/testel.html</li>
+        <li><a href="http://www.sublimetext.com/2" target="_blank">http://www.sublimetext.com/2</a></li>
+        <li><a href="http://brackets.io/" target="_blank">http://brackets.io/</a></li>
+        <li>emacs, vim, atom, others</li>
+    </ul>
 </section>
 
 
 <section>
+    <h2>Definitiontime!</h2>
     <h3>HTML & CSS & Javascript</h3>
 
     <ul>
@@ -273,6 +267,14 @@
 
 </section>
 
+<section>
+    <h2>Hacktime!</h2>
+    <h3><a href="http://maptime.io/" target="_blank">http://maptime.io/</a></h3>
+    <ul>
+        <li class="fragment">View &rsaquo; Developer &rsaquo; View Source (Cmd + Opt + U)</li>
+        <li class="fragment">Right-click &rsaquo; Inspect Element (Cmd + Opt + I)</li>
+    </ul>
+</section>
 
 
 
@@ -294,7 +296,7 @@ Hello, World!
     <h2>"Tags" = Markup = &lt;angle brackets&gt;</h2>
     <pre><code class="bigcode"  contenteditable spellcheck="false">
 
-<div class="hili">&lt;h1&gt;</div>Hello, World!<div class="hili">&lt;/h1&gt;</div>
+<hili>&lt;h1&gt;</hili>Hello, World!<hili>&lt;/h1&gt;</hili>
 
     </code></pre>
 </section>
@@ -304,7 +306,7 @@ Hello, World!
     <h2>Style?</h2>
     <pre><code class="bigcode" contenteditable spellcheck="false">
 
-<div class="hili">h1 { color: green; }</div>
+<hili>h1 { color: green; }</hili>
 
 &lt;h1&gt;Hello, World!&lt;/h1&gt;
 
@@ -318,9 +320,9 @@ Hello, World!
 <section>
     <h2>Style!</h2>
     <pre><code class="bigcode"  contenteditable spellcheck="false">
-<div class="hili">&lt;style&gt;</div>
+<hili>&lt;style&gt;</hili>
     h1 { color: green; }
-<div class="hili">&lt;/style&gt;</div>
+<hili>&lt;/style&gt;</hili>
 
 &lt;h1&gt;Hello, World!&lt;/h1&gt;
 
@@ -333,123 +335,44 @@ Hello, World!
 
 <section>
     <h3>Proper form</h3>
-    <pre><code class="bigcode"  contenteditable spellcheck="false">
-<div class="hili">&lt;html&gt;
-    &lt;head&gt;</div>
+    <pre><code class="bigcode"  contenteditable spellcheck="false"><hili>&lt;!doctype html&gt;
+&lt;html&gt;
+    &lt;head&gt;</hili>
         &lt;style&gt;
             h1 { color: green; }
         &lt;/style&gt;
-<div class="hili">    &lt;/head&gt;
+<hili>    &lt;/head&gt;
 
-    &lt;body&gt;</div>
+    &lt;body&gt;</hili>
         &lt;h1&gt;Hello, World!&lt;/h1&gt;
 
-<div class="hili">    &lt;/body&gt;
+<hili>    &lt;/body&gt;
 &lt;/html&gt;
-</div>
+</hili>
     </code></pre>
 </section>
 
 <section>
-    <h3>Let's try lots of style</h3>
-    <pre><code class="bigcode"  contenteditable spellcheck="false">
-&lt;html&gt;
+    <h3>More Important Tags</h3>
+    <pre><code class="bigcode"  contenteditable spellcheck="false">&lt;html&gt;
     &lt;head&gt;
         &lt;style&gt;
-            body {
-                color: yellow;
-            }
-            h1 { color: green; }
-            p { color: purple; }
         &lt;/style&gt;
     &lt;/head&gt;
 
     &lt;body&gt;
         &lt;h1&gt;Hello, World!&lt;/h1&gt;
 
-        &lt;p&gt;Feline ipsum dolor ocelot, tabby
-        so bobtail.
-        Norwegian forest such lynx.&lt;/p&gt;
+<hili>        &lt;div&gt;I'm a division&lt;/div&gt;</hili>
+
+<hili>        &lt;p&gt;Feline ipsum dolor ocelot, tabby so
+        bobtail. Norwegian forest such lynx.&lt;/p&gt;</hili>
     &lt;/body&gt;
 &lt;/html&gt;
 
     </code></pre>
 </section>
 
-<section>
-    <pre><code class="bigcode"  contenteditable spellcheck="false">
-&lt;html&gt;
-    &lt;head&gt;
-        &lt;style&gt;
-            body {
-                font-family: sans-serif;
-                background-color: yellow;
-            }
-            h1 { color: green; }
-            p { color: purple; }
-        &lt;/style&gt;
-    &lt;/head&gt;
-
-    &lt;body&gt;
-        &lt;h1&gt;Hello, World!&lt;/h1&gt;
-
-        &lt;p&gt;Feline ipsum dolor sit amet ocelot, tabby so bobtail.
-        Norwegian forest bombay such lynx. &lt;/p&gt;
-    &lt;/body&gt;
-&lt;/html&gt;
-
-    </code></pre>
-</section>
-
-<section>
-    <pre><code class="bigcode"  contenteditable spellcheck="false">
-&lt;html&gt;
-    &lt;head&gt;
-        &lt;style&gt;
-            body {
-                font-family: sans-serif;
-                background-color: yellow;
-            }
-            h1 { color: green; }
-            p { color: purple; }
-        &lt;/style&gt;
-    &lt;/head&gt;
-
-    &lt;body&gt;
-        &lt;h1&gt;Hello, World!&lt;/h1&gt;
-
-        &lt;p&gt;Feline ipsum dolor sit amet ocelot, tabby so bobtail.
-        Norwegian forest bombay such lynx. &lt;/p&gt;
-    &lt;/body&gt;
-&lt;/html&gt;
-
-    </code></pre>
-</section>
-
-<section>
-    <pre><code class="bigcode"  contenteditable spellcheck="false">
-&lt;html&gt;
-    &lt;head&gt;
-        &lt;style&gt;
-            body {
-                font-family: sans-serif;
-                background-color: yellow;
-            }
-            h1 { color: green; }
-            p { color: purple; }
-        &lt;/style&gt;
-    &lt;/head&gt;
-
-    &lt;body&gt;
-        &lt;h1&gt;Hello, World!&lt;/h1&gt;
-
-        &lt;p&gt;Feline ipsum dolor sit amet ocelot, tabby so bobtail.
-        Norwegian forest bombay such lynx. &lt;/p&gt;
-    &lt;/body&gt;
-&lt;/html&gt;
-
-    </code></pre>
-</section>
 
 
 <section>
@@ -590,6 +513,17 @@ JAVASCRIPT
 
 </section>
 
+<!--
+<section>
+    <h3>Resources</h3>
+    <ul>
+        <li>Right-click &rsaquo; Inspect Element (Cmd + Opt + I)</li>
+        <li>View &rsaquo; Developer &rsaquo; View Source (Cmd + Opt + U)</li>
+        <li>jsbin, jsfiddle.net, Mozilla Thimble</li>
+        <li>https://www.cs.tut.fi/~jkorpela/www/testel.html</li>
+    </ul>
+</section>
+ -->
 
 
 <!--

@@ -17,7 +17,8 @@
             }
 
             // @jhnklly: unescape if class="hili"
-            element.innerHTML = element.innerHTML.replace(/&lt;div class="hili"&gt;([^]*?)(&lt;\/div&gt;)/g, '<div class="hili">$1</div>');
+            //element.innerHTML = element.innerHTML.replace(/&lt;div class="hili"&gt;([^]*?)(&lt;\/div&gt;)/g, '<div class="hili">$1</div>');
+            element.innerHTML = element.innerHTML.replace(/&lt;hili&gt;([^]*?)(&lt;\/hili&gt;)/g, '<div class="hili">$1</div>');
 
             // re-highlight when focus is lost (for edited code)
             element.addEventListener( 'focusout', function( event ) {
@@ -34,8 +35,8 @@ var hljs=new function(){
 
     function j(v){    // @jhnklly
         var ret = v.replace(/&/gm, "&amp;").replace(/</gm, "&lt;").replace(/>/gm, "&gt;");
-        ret = ret.replace(/&lt;div class="hili"&gt;([^]*?)(&lt;\/div&gt;)/g, '<div class="hili">$1</div>');
-        //console.log(ret);
+        // ok, unless div: ret = ret.replace(/&lt;div class="hili"&gt;([^]*?)(&lt;\/div&gt;)/g, '<div class="hili">$1</div>');
+        ret = ret.replace(/&lt;hili&gt;([^]*?)(&lt;\/hili&gt;)/g, '<div class="hili">$1</div>');
         return ret;
   }
 
