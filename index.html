@@ -352,25 +352,74 @@ Hello, World!
     </code></pre>
 </section>
 
+
 <section>
     <h3>More Important Tags</h3>
-    <pre><code class="bigcode"  contenteditable spellcheck="false">&lt;html&gt;
-    &lt;head&gt;
-        &lt;style&gt;
-        &lt;/style&gt;
-    &lt;/head&gt;
+    <pre><code class="bigcode"  contenteditable spellcheck="false">
 
-    &lt;body&gt;
-        &lt;h1&gt;Hello, World!&lt;/h1&gt;
+&lt;body&gt;
+    &lt;h1&gt;Hello, World!&lt;/h1&gt;
 
-<hili>        &lt;div&gt;I'm a division&lt;/div&gt;</hili>
+<hili>    &lt;div&gt;I'm a div.&lt;/div&gt;</hili>
 
-<hili>        &lt;p&gt;Feline ipsum dolor ocelot, tabby so
-        bobtail. Norwegian forest such lynx.&lt;/p&gt;</hili>
-    &lt;/body&gt;
-&lt;/html&gt;
+<hili>    &lt;a href="http://maptime.io"&gt;I'm a link.&lt;/a&gt;</hili>
+
+<hili>    &lt;p&gt;Feline ipsum dolor ocelot, tabby so
+    bobtail. Norwegian forest such lynx.
+    &lt;/p&gt;</hili>
+
+&lt;/body&gt;
 
     </code></pre>
+</section>
+
+
+<section>
+    <h3>Tags can have attributes and "values".</h3>
+    <pre><code class="bigcode html"  contenteditable spellcheck="false">
+&lt;div <hili>id="unicorn" class="fantanimal"</hili>&gt;I'm a div.&lt;/div&gt;
+
+&lt;a <hili>target="_blank"</hili> href="http://maptime.io"&gt;I'm a link.&lt;/a&gt;
+
+&lt;p <hili>class="ipsum fantanimal"</hili>&gt;Feline ipsum dolor ocelot, tabby so
+        bobtail. Norwegian forest such lynx.&lt;/p&gt;
+
+    </code></pre>
+</section>
+
+
+<section>
+    <h3>We select "elements" in the "DOM" via "class" or "id".</h3>
+    <p class="fragment">Whuck?</p>
+    <p>
+    <ul>
+        <li class="fragment">Element: think "tag"</li>
+        <li class="fragment">DOM = Document Object Model</li>
+        <li class="fragment">To style by id use hash: <code>#name_of_id</code></li>
+        <li class="fragment">To style by class use dot: <code>.name_of_class</code></li>
+    </ul>
+    </p>
+</section>
+
+
+<section>
+
+    <h3><code>hash #id hash #id hash #id hash #id hash</code></h3>
+    <h3 class="fragment"><code>dot .class dot .class dot .class dot .class</code></h3>
+    <h3 class="fragment"><code>element element element element</code></h3>
+
+
+    <pre  class="fragment"><code class="bigcode"  contenteditable spellcheck="false">&lt;style&gt;
+
+    #unicorn { border: 1px dotted green; }
+
+    .fantanimal { font-size: 2em; }
+
+    .ipsum { font-style: italic; }
+
+    a { font-family: 'Harriet Display', sans-serif; }
+
+&lt;/style&gt;</code></pre>
 </section>
 
 
@@ -386,8 +435,13 @@ JAVASCRIPT
 
 <section>
     <h3>HTML & CSS just for style</h3>
-    <h3>Javascript for behavior</h3>
-    <pre><code class="bigcode" contenteditable spellcheck="false">
+    <h3 class="fragment">Javascript for behavior</h3>
+</section>
+
+<section>
+    <h3>Text inside <code>script</code> tags is special.</h3>
+    <h3 class="fragment">Unless you put quotes around it&mdash;then it's <code>"just text"</code>.</h3>
+    <pre class="fragment"><code class="bigcode html" contenteditable spellcheck="false">
 &lt;script&gt;
     alert("I'm an alert!");
 &lt;/script&gt;
@@ -397,7 +451,7 @@ JAVASCRIPT
 
 
 <section>
-    <h3></h3>
+    <h3>Use <code>var</code> to initialize variables</h3>
     <pre><code class="bigcode" contenteditable spellcheck="false">
 &lt;script&gt;
     var foo = "Meow.";
@@ -411,25 +465,30 @@ JAVASCRIPT
 
 
 <section>
-    <h3></h3>
-    <pre><code class="bigcode" contenteditable spellcheck="false">
+    <h3>Use + to add numbers.</h3>
+    <p class="fragment">(See how easy this is?)</p>
+    <h3 class="fragment">Also use + to concatenate text.</h3>
+    <pre class="fragment"><code class="bigcode" contenteditable spellcheck="false">
 &lt;script&gt;
-    var text_var = "Meow.";
-    var number_var = 0;
+    var text_var = " Meow. ";
+    var number_var = 1;
 
-    alert(number_var + text_var);
+    alert(10 + number_var + text_var);
+    alert(text_var + 10 + number_var);
 &lt;/script&gt;
     </code></pre>
+    <h3 class="fragment">Order matters.</h3>
 
 </section>
 
 
 
 <section>
-    <h3>if (this condition is true) { do this; }</h3>
-    <pre><code class="bigcode" contenteditable spellcheck="false">
+    <h3><code>if (this condition is true) { </code></h3>
+    <h3  class="fragment"><code>do this; }</code></h3>
+    <pre class="fragment"><code class="bigcode" contenteditable spellcheck="false">
 &lt;script&gt;
-    var text_var = "Meow.";
+    var text_var = " Meow.";
     var number_var = 0;
 
     if (number_var > 0) {
@@ -445,7 +504,7 @@ JAVASCRIPT
     <h3>Details matter</h3>
     <pre><code class="bigcode"  contenteditable spellcheck="false">
 &lt;script&gt;
-    var text_var = "Meow.";
+    var text_var = " Meow.";
     var number_var = 0;
 
     if (number_var >= 0) {
@@ -457,8 +516,8 @@ JAVASCRIPT
 </section>
 
 <section>
-    <h3></h3>
-    <pre><code class="bigcode" contenteditable spellcheck="false">
+    <h3>What if you wanted to "alert" 1 <em>million</em> times?</h3>
+    <pre><code class="fragment bigcode" contenteditable spellcheck="false">
 &lt;script&gt;
     var text_var = "Meow.";
     var number_var = 0;
@@ -476,42 +535,19 @@ JAVASCRIPT
 
 
 <section>
-    <h3></h3>
-    <pre><code class="bigcode" contenteditable spellcheck="false">
-&lt;script&gt;
-    var text_var = "Meow.";
-    var number_var = 0;
-
-    while (number_var < 7) {
-        if (number_var >= 0) {
-            alert(number_var + text_var);
-        }
-        number_var++;
-    }
-&lt;/script&gt;
-    </code></pre>
-
+    <h3>Now you know how to code!</h3>
+    <div class="fragment">
+        <p><code>#nailedIt</code>
+        </p>
+        <img src="img/best_cat_gif_jump_light.gif">
 </section>
-
 
 
 <section>
-    <h3></h3>
-    <pre><code class="bigcode" contenteditable spellcheck="false">
-&lt;script&gt;
-    var text_var = "Meow.";
-    var number_var = 0;
-
-    while (number_var < 7) {
-        if (number_var >= 0) {
-            alert(number_var + text_var);
-        }
-        number_var++;
-    }
-&lt;/script&gt;
-    </code></pre>
-
+    <h3>Questions?</h3>
+    <img src="img/cat-gif-snow-wall.gif">
 </section>
+
 
 <!--
 <section>
@@ -520,6 +556,7 @@ JAVASCRIPT
         <li>Right-click &rsaquo; Inspect Element (Cmd + Opt + I)</li>
         <li>View &rsaquo; Developer &rsaquo; View Source (Cmd + Opt + U)</li>
         <li>jsbin, jsfiddle.net, Mozilla Thimble</li>
+        <li>https://developer.mozilla.org/en-US/docs/Web/HTML/Element</li>
         <li>https://www.cs.tut.fi/~jkorpela/www/testel.html</li>
     </ul>
 </section>
