@@ -6,7 +6,6 @@
 
 <title>You thought you weren't a programmer</title>
 
-<meta name="description" content="Vector tiles with Mapsense.js">
 <meta name="author" content="John Kelly">
 
 <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -117,6 +116,10 @@
     .reveal pre code.bigcode {
         font-size: 2em;
         line-height: 1.1em;
+    }
+
+    .reveal code {
+        letter-spacing: 0.0em;
     }
 
     .reveal pre code {
@@ -295,6 +298,11 @@
 
 
 <section>
+    <img src="img/InspectElement_DevTools.png" />
+</section>
+
+
+<section>
     <h2>index.txt</h2>
     <pre><code class="bigcode"  contenteditable spellcheck="false">
 Hello, World!
@@ -385,9 +393,7 @@ Hello, World!
 
 <section>
     <h3></h3>
-    <pre><code class="bigcode"  contenteditable spellcheck="false">
-
-&lt;body&gt;
+    <pre><code class="bigcode"  contenteditable spellcheck="false">&lt;body&gt;
     &lt;h1&gt;Hello, World!&lt;/h1&gt;
 
 <hili>    &lt;div&gt;I'm a div.&lt;/div&gt;</hili>
@@ -397,10 +403,7 @@ Hello, World!
 <hili>    &lt;p&gt;Feline ipsum dolor ocelot, tabby so
     bobtail. Norwegian forest such lynx. Nip nap.
     &lt;/p&gt;</hili>
-
-&lt;/body&gt;
-
-    </code></pre>
+&lt;/body&gt;</code></pre>
 </section>
 
 
@@ -422,8 +425,7 @@ Hello, World!
 
 &lt;p <hili>class="ipsum fantanimal"</hili>&gt;Feline ipsum dolor ocelot, tabby so
         bobtail. Norwegian forest such lynx. Nip nap.&lt;/p&gt;
-
-    </code></pre>
+</code></pre>
 </section>
 
 
@@ -568,7 +570,7 @@ alert(text_var + 10 + number_var);
     var text_var = " Meow.";
     var number_var = 0;
 
-    if (number_var > 0) {
+    if (number_var >= 0) {
         alert(number_var + text_var);
     }
 &lt;/script&gt;
@@ -576,18 +578,6 @@ alert(text_var + 10 + number_var);
 
 </section>
 
-
-<section>
-    <h3>Details matter</h3>
-    <pre><code class="bigcode"  contenteditable spellcheck="false">var text_var = " Meow.";
-var number_var = 0;
-
-if (number_var >= 0) {
-    alert(number_var + text_var);
-}
-</code></pre>
-
-</section>
 
 <section>
     <h3>What if you want to &ldquo;alert&rdquo; 1 <em>million</em> times?</h3>
@@ -629,7 +619,7 @@ var colors = ['red','orange','yellow',
     'green','blue','indigo','violet'
 ];
 
-for (i = 0; i < 21; i++) {
+for (i = 0; i < colors.length; i++) {
     var element = '<div style="background-color:' +
         colors[i] +
         '">' +
@@ -639,6 +629,52 @@ for (i = 0; i < 21; i++) {
     document.write(element);
 }
 </script>
+</section>
+
+
+<section>
+    <h3>We ♡ libraries</h3>
+<pre><code class="fragment html" contenteditable spellcheck="false">&lt;script src="http://d3js.org/d3.v3.min.js"&gt;
+&lt;/script&gt;
+</code></pre>
+<pre><code class="fragment html" contenteditable spellcheck="false">&lt;script&gt;
+d3.select('body')
+    .append('div')
+        .text('D3time!')
+        .attr('style','color: orange; font-size: 100px;');
+&lt;/script&gt;</code></pre>
+
+<div class="fragment" style="color: orange; font-size: 100px;">
+    D3time!
+</div>
+
+</section>
+
+<section>
+    <h3>Cut & Paste & Discuss D3</h3>
+<pre><code class="fragment html" contenteditable spellcheck="false">&lt;script src="http://d3js.org/d3.v3.min.js"&gt;
+&lt;/script&gt;
+</code></pre>
+<pre><code class="fragment" contenteditable spellcheck="false">&lt;script&gt;
+var colors = ['red','orange','yellow',
+    'green','blue','indigo','violet'
+];
+
+d3.select('body').selectAll('div')
+    .data(colors)
+    .enter()
+    .append('div')
+        .text('♥')
+        .attr('style',function(d) {
+            var css = 'color: ' + d;
+            return css;
+        });
+&lt;/script&gt;</code></pre>
+
+</section>
+
+<section>
+    <div style="color: red">♥</div><div style="color: orange">♥</div><div style="color: yellow">♥</div><div style="color: green">♥</div><div style="color: blue">♥</div><div style="color: indigo">♥</div><div style="color: violet">♥</div>
 </section>
 
 <section>
