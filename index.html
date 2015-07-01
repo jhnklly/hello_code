@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8">
 
-<title>Hello Code!</title>
+<title>You thought you weren't a programmer</title>
 
 <meta name="description" content="Vector tiles with Mapsense.js">
 <meta name="author" content="John Kelly">
@@ -188,7 +188,7 @@
 <div class="slides">
 <section>
     <section>
-        <h2>Hello Code!</h2>
+        <h2>You Thought You Weren't A Programmer</h2>
         <p></p>
         <h2></h2>
         <p>
@@ -196,8 +196,9 @@
 
                 <br>
                 <br><a href="http://twitter.com/MaptimeSF" target="_blank">@MaptimeSF</a>
-                <br><a href="http://twitter.com/jhnklly" target="_blank">@jhnklly</a>
                 <br><a href="http://twitter.com/mapsense" target="_blank">@mapsense</a>
+                <br><a href="http://twitter.com/jhnklly" target="_blank">@jhnklly</a>
+                <br>john@mapsense.co
             </small>
         </p>
     </section>
@@ -207,21 +208,17 @@
     </section>
 </section>
 
+
+
 <section>
-    <h3>Follow along</h3>
-    <p>
-        <a href="https://jhnklly.github.io/vector_tiles_tutorial" target="_blank">https://jhnklly.github.io/vector_tiles_tutorial</a>
-    </p>
-    <p>
-        <div class="fragment">All questions are important.</div>
-        <div class="fragment">It's okay to cheat off others.</div>
-        <div class="fragment">(Actually, kinda required.)</div>
-        <div class="fragment">(I.e., be friendly and help each other.)</div>
-    </p>
-    <!--
-    <p>Or get the code for examples:</p>
-    <p><a href="https://github.com/jhnklly/vector_tiles_tutorial" target="_blank">https://github.com/jhnklly/vector_tiles_tutorial</a></p>
--->
+    <h2>Downloadtime!</h2>
+    <h3>Get A Text Editor</h3>
+    <ul>
+        <li><a href="http://www.sublimetext.com/2" target="_blank">http://www.sublimetext.com/2</a></li>
+        <li><a href="http://brackets.io/" target="_blank">http://brackets.io/</a></li>
+        <li><a href="http://www.jsbin.com">jsbin.com</a></li>
+        <li>emacs, vim, atom, others</li>
+    </ul>
 </section>
 
 
@@ -243,15 +240,17 @@
 </section>
 
 
-
 <section>
-    <h2>Downloadtime!</h2>
-    <h3>Get A Text Editor</h3>
-    <ul>
-        <li><a href="http://www.sublimetext.com/2" target="_blank">http://www.sublimetext.com/2</a></li>
-        <li><a href="http://brackets.io/" target="_blank">http://brackets.io/</a></li>
-        <li>emacs, vim, atom, others</li>
-    </ul>
+    <h3>Follow along</h3>
+    <p>
+        <a href="https://jhnklly.github.io/hello_code" target="_blank">https://jhnklly.github.io/hello_code</a>
+    </p>
+    <p>
+        <div class="fragment">All questions are important.</div>
+        <div class="fragment">It's okay to cheat off others.</div>
+        <div class="fragment">(Actually, kinda required.)</div>
+        <div class="fragment">(I.e., be friendly and help each other.)</div>
+    </p>
 </section>
 
 
@@ -267,12 +266,29 @@
 
 </section>
 
+
+<section>
+    <h2>Goaltime!</h2>
+    <span class="fragment">Demystify.</span>
+    <span class="fragment">Empower.</span>
+    <p class="fragment">You don't need to be fluent in &ldquo;beep-boop-boop-beep&rdquo; to make pretty things with code.</p>
+    <ul>
+        <li class="fragment">Type some code into a text editor</li>
+        <li class="fragment">View that code in a browser</li>
+        <li class="fragment">Style it: add colors, pictures, links</li>
+        <li class="fragment">I.e., make a web page!</li>
+    </ul>
+
+</section>
+
 <section>
     <h2>Hacktime!</h2>
     <h3><a href="http://maptime.io/" target="_blank">http://maptime.io/</a></h3>
     <ul>
-        <li class="fragment">View &rsaquo; Developer &rsaquo; View Source (Cmd + Opt + U)</li>
-        <li class="fragment">Right-click &rsaquo; Inspect Element (Cmd + Opt + I)</li>
+        <li class="fragment">View &rsaquo; Developer &rsaquo; View Source
+            <br><code>(Cmd + Opt + U)</code></li>
+        <li class="fragment">Right-click &rsaquo; Inspect Element <br><code>(Cmd + Opt + I)</code></li>
+        <li class="fragment"><strike>Vandalize</strike> Beautify</li>
     </ul>
 </section>
 
@@ -312,13 +328,20 @@ Hello, World!
 
     </code></pre>
 
-    <h3 class="fragment">CSS gets {curly brackets}, colons: and semi-colons;</h3>
+    <p class="fragment">CSS gets
+    </p>
+        <ul>
+            <li class="fragment"><code>{curly brackets}</code></li>
+            <li class="fragment"><code>colons :</code></li>
+            <li class="fragment"><code>semi-colons;</code></li>
+        </ul>
 
 </section>
 
 
 <section>
     <h2>Style!</h2>
+    <h3 class="fragment">CSS also needs to be inside <code>&lt;style&gt;</code> tags.</h3>
     <pre><code class="bigcode"  contenteditable spellcheck="false">
 <hili>&lt;style&gt;</hili>
     h1 { color: green; }
@@ -328,7 +351,6 @@ Hello, World!
 
     </code></pre>
 
-    <h3 class="fragment">CSS also needs to be inside &lt;style&gt; tags.</h3>
 
 </section>
 
@@ -345,16 +367,24 @@ Hello, World!
 
     &lt;body&gt;</hili>
         &lt;h1&gt;Hello, World!&lt;/h1&gt;
-
 <hili>    &lt;/body&gt;
-&lt;/html&gt;
-</hili>
+&lt;/html&gt;</hili>
     </code></pre>
 </section>
 
 
 <section>
-    <h3>More Important Tags</h3>
+    <h3>Other Important Tags</h3>
+    <ul>
+        <li class="fragment">p = paragraph <br><code>&ltp&gt;I'm a paragraph.&lt/p&gt;</code></li>
+        <li class="fragment">a = anchor, for links <br><code>&lta&gt;I'm a link.&lt/a&gt;</code></li>
+        <li class="fragment">div = division <br><code>&ltdiv&gt;I'm a div.&lt/div&gt;</code></li>
+        <li class="fragment">img = image <br><code>&ltimg /&gt;</code></li>
+    </ul>
+</section>
+
+<section>
+    <h3></h3>
     <pre><code class="bigcode"  contenteditable spellcheck="false">
 
 &lt;body&gt;
@@ -365,7 +395,7 @@ Hello, World!
 <hili>    &lt;a href="http://maptime.io"&gt;I'm a link.&lt;/a&gt;</hili>
 
 <hili>    &lt;p&gt;Feline ipsum dolor ocelot, tabby so
-    bobtail. Norwegian forest such lynx.
+    bobtail. Norwegian forest such lynx. Nip nap.
     &lt;/p&gt;</hili>
 
 &lt;/body&gt;
@@ -375,6 +405,15 @@ Hello, World!
 
 
 <section>
+    <h3>Pictures, please.</h3>
+    <p></p>
+    <pre><code class="fragment bigcode" contenteditable spellcheck="false">
+&ltimg src="https://placekitten.com/g/200/300" /&gt;
+    </code></pre>
+
+</section>
+
+<section>
     <h3>Tags can have attributes and "values".</h3>
     <pre><code class="bigcode html"  contenteditable spellcheck="false">
 &lt;div <hili>id="unicorn" class="fantanimal"</hili>&gt;I'm a div.&lt;/div&gt;
@@ -382,14 +421,14 @@ Hello, World!
 &lt;a <hili>target="_blank"</hili> href="http://maptime.io"&gt;I'm a link.&lt;/a&gt;
 
 &lt;p <hili>class="ipsum fantanimal"</hili>&gt;Feline ipsum dolor ocelot, tabby so
-        bobtail. Norwegian forest such lynx.&lt;/p&gt;
+        bobtail. Norwegian forest such lynx. Nip nap.&lt;/p&gt;
 
     </code></pre>
 </section>
 
 
 <section>
-    <h3>We select "elements" in the "DOM" via "class" or "id".</h3>
+    <h3>We select &ldquo;elements&rdquo; in the &ldquo;DOM&rdquo; via &ldquo;class&rdquo; or &ldquo;id&rdquo;.</h3>
     <p class="fragment">Whuck?</p>
     <p>
     <ul>
@@ -404,12 +443,12 @@ Hello, World!
 
 <section>
 
-    <h3><code>hash #id hash #id hash #id hash #id hash</code></h3>
-    <h3 class="fragment"><code>dot .class dot .class dot .class dot .class</code></h3>
-    <h3 class="fragment"><code>element element element element</code></h3>
+    <h4><code>hash #id hash #id hash #id hash #id hash</code></h4>
+    <h4 class="fragment"><code>dot .class dot .class dot .class dot .class</code></h4>
+    <h4 class="fragment"><code>element element element element</code></h4>
 
 
-    <pre  class="fragment"><code class="bigcode"  contenteditable spellcheck="false">&lt;style&gt;
+    <pre  class="fragment"><code class=""  contenteditable spellcheck="false">&lt;style&gt;
 
     #unicorn { border: 1px dotted green; }
 
@@ -423,6 +462,31 @@ Hello, World!
 </section>
 
 
+
+<section>
+    <style>
+
+    #unicorn { border: 3px dotted green; }
+
+    .fantanimal { font-size: 1.3em!important; }
+
+    .ipsum { font-style: italic!important; }
+
+    a { font-family: 'Harriet Display', sans-serif!important; }
+
+    </style>
+<div id="unicorn" class="fantanimal">I'm a div.</div>
+
+<a target="_blank" href="http://maptime.io">I'm a link.</a>
+
+<p class="ipsum fantanimal">Feline ipsum dolor ocelot, tabby so
+        bobtail. Norwegian forest such lynx. Nip nap.</p>
+
+</section>
+
+<style>
+    a { font-family: Quicksand!important; }
+</style>
 
 <section>
     <h3>Paws 4 Questions</h3>
@@ -440,7 +504,9 @@ JAVASCRIPT
 
 <section>
     <h3>Text inside <code>script</code> tags is special.</h3>
+
     <h3 class="fragment">Unless you put quotes around it&mdash;then it's <code>"just text"</code>.</h3>
+
     <pre class="fragment"><code class="bigcode html" contenteditable spellcheck="false">
 &lt;script&gt;
     alert("I'm an alert!");
@@ -454,9 +520,9 @@ JAVASCRIPT
     <h3>Use <code>var</code> to initialize variables</h3>
     <pre><code class="bigcode" contenteditable spellcheck="false">
 &lt;script&gt;
-    var foo = "Meow.";
+    var text_var = "Meow.";
 
-    alert("I'm an alert!" + foo);
+    alert("I'm an alert!" + text_var);
 &lt;/script&gt;
     </code></pre>
 
@@ -466,22 +532,33 @@ JAVASCRIPT
 
 <section>
     <h3>Use + to add numbers.</h3>
-    <p class="fragment">(See how easy this is?)</p>
-    <h3 class="fragment">Also use + to concatenate text.</h3>
-    <pre class="fragment"><code class="bigcode" contenteditable spellcheck="false">
-&lt;script&gt;
-    var text_var = " Meow. ";
-    var number_var = 1;
+<pre class="fragment"><code class="bigcode" contenteditable spellcheck="false">var variable1 = 3000;
+var variable2 = 857;
 
-    alert(10 + number_var + text_var);
-    alert(text_var + 10 + number_var);
-&lt;/script&gt;
-    </code></pre>
-    <h3 class="fragment">Order matters.</h3>
+alert(variable1 + variable2);
+</code></pre>
+    <p class="fragment">(See how easy this is?)</p>
 
 </section>
 
 
+
+<section>
+    <h3 class="">Also use + to join text.</h3>
+    <pre class="fragment"><code class="bigcode" contenteditable spellcheck="false">var text_var = " Meow. ";
+var call_it_what_you_want = " Woof. ";
+
+alert(text_var + call_it_what_you_want);
+</code></pre>
+
+</section>
+
+<!--
+    <h3 class="fragment">Order matters.</h3>
+alert(text_var + 10 + number_var);
+alert(10 + number_var + text_var);
+alert(text_var + 10 + number_var);
+ -->
 
 <section>
     <h3><code>if (this condition is true) { </code></h3>
@@ -502,37 +579,67 @@ JAVASCRIPT
 
 <section>
     <h3>Details matter</h3>
-    <pre><code class="bigcode"  contenteditable spellcheck="false">
-&lt;script&gt;
-    var text_var = " Meow.";
-    var number_var = 0;
+    <pre><code class="bigcode"  contenteditable spellcheck="false">var text_var = " Meow.";
+var number_var = 0;
 
-    if (number_var >= 0) {
-        alert(number_var + text_var);
-    }
-&lt;/script&gt;
-    </code></pre>
+if (number_var >= 0) {
+    alert(number_var + text_var);
+}
+</code></pre>
 
 </section>
 
 <section>
-    <h3>What if you wanted to "alert" 1 <em>million</em> times?</h3>
-    <pre><code class="fragment bigcode" contenteditable spellcheck="false">
-&lt;script&gt;
-    var text_var = "Meow.";
-    var number_var = 0;
+    <h3>What if you want to &ldquo;alert&rdquo; 1 <em>million</em> times?</h3>
+<pre><code class="fragment bigcode" contenteditable spellcheck="false">var text_var = "Meow.";
+var number_var = 0;
 
-    while (number_var < 7) {
-        if (number_var >= 0) {
-            alert(number_var + text_var);
-        }
-        number_var++;
-    }
-&lt;/script&gt;
-    </code></pre>
+while (number_var < 7) {
+    alert(number_var + text_var);
+    number_var++;
+}
+</code></pre>
 
 </section>
 
+
+<section>
+    <h3>Arrays & <code>for</code> loops</h3>
+<pre><code class="fragment javascript" contenteditable spellcheck="false">
+var colors = ['red','orange','yellow',
+    'green','blue','indigo','violet'
+];
+
+for (i = 0; i < 21; i++) {
+    var element = '<div style="background-color:' +
+        colors[i] +
+        '">' +
+        i +
+        '</div>';
+
+    document.write(element);
+}
+</code></pre>
+
+</section>
+
+<section>
+<script>
+var colors = ['red','orange','yellow',
+    'green','blue','indigo','violet'
+];
+
+for (i = 0; i < 21; i++) {
+    var element = '<div style="background-color:' +
+        colors[i] +
+        '">' +
+        i +
+        '</div>';
+
+    document.write(element);
+}
+</script>
+</section>
 
 <section>
     <h3>Now you know how to code!</h3>
@@ -548,6 +655,23 @@ JAVASCRIPT
     <img src="img/cat-gif-snow-wall.gif">
 </section>
 
+
+<section>
+    <h3></h3>
+    <p>
+        <a href="https://jhnklly.github.io/hello_code" target="_blank">https://jhnklly.github.io/hello_code</a>
+    </p>
+     <p>
+            <small>
+
+                <br>
+                <br><a href="http://twitter.com/MaptimeSF" target="_blank">@MaptimeSF</a>
+                <br><a href="http://twitter.com/mapsense" target="_blank">@mapsense</a>
+                <br><a href="http://twitter.com/jhnklly" target="_blank">@jhnklly</a>
+                <br>john@mapsense.co
+            </small>
+        </p>
+</section>
 
 <!--
 <section>
