@@ -38,6 +38,9 @@
         */
       }
 
+    code.doit,
+    code.bigcode.doit { border: 20px solid orange; }
+
     img.plain {
         border: 0 !important;
         box-shadow: 0 !important;
@@ -259,7 +262,7 @@
 
 <section>
     <h2>Definitiontime!</h2>
-    <h3>HTML & CSS & Javascript</h3>
+    <h3>HTML & CSS & JavaScript</h3>
 
     <ul>
         <li class="fragment">HyperText Markup Language</li>
@@ -291,7 +294,9 @@
         <li class="fragment">View &rsaquo; Developer &rsaquo; View Source
             <br><code>(Cmd + Opt + U)</code></li>
         <li class="fragment">Right-click &rsaquo; Inspect Element <br><code>(Cmd + Opt + I)</code></li>
-        <li class="fragment"><strike>Vandalize</strike> Beautify</li>
+        <li class="fragment">
+            <strike>Vandalize</strike> Beautify
+        </li>
     </ul>
 </section>
 
@@ -301,19 +306,23 @@
     <img src="img/InspectElement_DevTools.png" />
 </section>
 
-
+<!--
 <section>
     <h2>index.txt</h2>
     <pre><code class="bigcode"  contenteditable spellcheck="false">
 Hello, World!
     </code></pre>
 </section>
-
+ -->
 <section>
     <h2>index.html</h2>
-    <pre><code class="bigcode"  contenteditable spellcheck="false">
+    <pre><code class="bigcode doit"  contenteditable spellcheck="false">
 Hello, World!
     </code></pre>
+    <p>Put your text editor on one half of the screen & browser on the other.</p>
+    <p>Don't worry if you miss things!</p>
+    <p>Exposure gradually brings fluency.</p>
+    <p>We'll stop to test when the code block has an orange border.</p>
 </section>
 
 <section>
@@ -393,8 +402,10 @@ Hello, World!
 
 <section>
     <h3></h3>
-    <pre><code class="bigcode"  contenteditable spellcheck="false">&lt;body&gt;
+    <pre><code class="bigcode doit"  contenteditable spellcheck="false">&lt;body&gt;
     &lt;h1&gt;Hello, World!&lt;/h1&gt;
+
+<hili>    &ltimg src="https://placekitten.com/g/200/300" /&gt;</hili>
 
 <hili>    &lt;div&gt;I'm a div.&lt;/div&gt;</hili>
 
@@ -406,7 +417,7 @@ Hello, World!
 &lt;/body&gt;</code></pre>
 </section>
 
-
+<!--
 <section>
     <h3>Pictures, please.</h3>
     <p></p>
@@ -415,13 +426,13 @@ Hello, World!
     </code></pre>
 
 </section>
-
+ -->
 <section>
     <h3>Tags can have attributes and "values".</h3>
     <pre><code class="bigcode html"  contenteditable spellcheck="false">
 &lt;div <hili>id="unicorn" class="fantanimal"</hili>&gt;I'm a div.&lt;/div&gt;
 
-&lt;a <hili>target="_blank"</hili> href="http://maptime.io"&gt;I'm a link.&lt;/a&gt;
+&lt;a <hili>href="http://maptime.io"</hili>&gt;I'm a link.&lt;/a&gt;
 
 &lt;p <hili>class="ipsum fantanimal"</hili>&gt;Feline ipsum dolor ocelot, tabby so
         bobtail. Norwegian forest such lynx. Nip nap.&lt;/p&gt;
@@ -458,11 +469,37 @@ Hello, World!
 
     .ipsum { font-style: italic; }
 
-    a { font-family: 'Harriet Display', sans-serif; }
+    a { font-family: 'Gotham', sans-serif; }
 
 &lt;/style&gt;</code></pre>
 </section>
 
+
+
+<section>
+    <h3>All together now</h3>
+
+<pre><code class="doit"  contenteditable spellcheck="false">&lt;!doctype html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;style&gt;
+            #unicorn { border: 1px dotted green; }
+            .fantanimal { font-size: 2em; }
+            .ipsum { font-style: italic; }
+            a { font-family: 'Gotham', sans-serif; }
+        &lt;/style&gt;
+    &lt;/head&gt;
+
+    &lt;body&gt;
+        &lt;div id="unicorn" class="fantanimal"&gt;I'm a div.&lt;/div&gt;
+
+        &lt;a target="_blank" href="http://maptime.io"&gt;I'm a link.&lt;/a&gt;
+
+        &lt;p class="ipsum fantanimal"&gt;Feline ipsum dolor ocelot, tabby so
+                bobtail. Norwegian forest such lynx. Nip nap.&lt;/p&gt;
+   &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+</section>
 
 
 <section>
@@ -501,7 +538,7 @@ JAVASCRIPT
 
 <section>
     <h3>HTML & CSS just for style</h3>
-    <h3 class="fragment">Javascript for behavior</h3>
+    <h3 class="fragment">JavaScript for behavior</h3>
 </section>
 
 <section>
@@ -509,7 +546,7 @@ JAVASCRIPT
 
     <h3 class="fragment">Unless you put quotes around it&mdash;then it's <code>"just text"</code>.</h3>
 
-    <pre class="fragment"><code class="bigcode html" contenteditable spellcheck="false">
+    <pre class="fragment"><code class="bigcode doit html" contenteditable spellcheck="false">
 &lt;script&gt;
     alert("I'm an alert!");
 &lt;/script&gt;
@@ -565,28 +602,25 @@ alert(text_var + 10 + number_var);
 <section>
     <h3><code>if (this condition is true) { </code></h3>
     <h3  class="fragment"><code>do this; }</code></h3>
-    <pre class="fragment"><code class="bigcode" contenteditable spellcheck="false">
-&lt;script&gt;
-    var text_var = " Meow.";
+    <pre class="fragment"><code class="bigcode" contenteditable spellcheck="false">&lt;script&gt;var text_var = " Meow.";
     var number_var = 0;
 
     if (number_var >= 0) {
         alert(number_var + text_var);
     }
-&lt;/script&gt;
-    </code></pre>
+&lt;/script&gt;</code></pre>
 
 </section>
 
 
 <section>
     <h3>What if you want to &ldquo;alert&rdquo; 1 <em>million</em> times?</h3>
-<pre><code class="fragment bigcode" contenteditable spellcheck="false">var text_var = "Meow.";
+<pre><code class="fragment bigcode doit" contenteditable spellcheck="false">var text_var = "Meow.";
 var number_var = 0;
 
 while (number_var < 7) {
     alert(number_var + text_var);
-    number_var++;
+    number_var = number_var + 1;
 }
 </code></pre>
 
@@ -595,7 +629,7 @@ while (number_var < 7) {
 
 <section>
     <h3>Arrays & <code>for</code> loops</h3>
-<pre><code class="fragment javascript" contenteditable spellcheck="false">
+<pre><code class="fragment doit javascript" contenteditable spellcheck="false">
 var colors = ['red','orange','yellow',
     'green','blue','indigo','violet'
 ];
@@ -634,10 +668,11 @@ for (i = 0; i < colors.length; i++) {
 
 <section>
     <h3>We ♡ libraries</h3>
-<pre><code class="fragment html" contenteditable spellcheck="false">&lt;script src="http://d3js.org/d3.v3.min.js"&gt;
+    <p>They're full of functions & power.</p>
+<pre><code class="fragment doit html" contenteditable spellcheck="false">&lt;script src="http://d3js.org/d3.v3.min.js"&gt;
 &lt;/script&gt;
 </code></pre>
-<pre><code class="fragment html" contenteditable spellcheck="false">&lt;script&gt;
+<pre><code class="fragment doit html" contenteditable spellcheck="false">&lt;script&gt;
 d3.select('body')
     .append('div')
         .text('D3time!')
@@ -652,10 +687,10 @@ d3.select('body')
 
 <section>
     <h3>Cut & Paste & Discuss D3</h3>
-<pre><code class="fragment html" contenteditable spellcheck="false">&lt;script src="http://d3js.org/d3.v3.min.js"&gt;
+<pre><code class="fragment doit html" contenteditable spellcheck="false">&lt;script src="http://d3js.org/d3.v3.min.js"&gt;
 &lt;/script&gt;
 </code></pre>
-<pre><code class="fragment" contenteditable spellcheck="false">&lt;script&gt;
+<pre><code class="fragment doit" contenteditable spellcheck="false">&lt;script&gt;
 var colors = ['red','orange','yellow',
     'green','blue','indigo','violet'
 ];
